@@ -172,15 +172,5 @@ hist_Fees_17_18_df$Bin = paste(hist_Fees_17_18_df$Bin1_new, hist_Fees_17_18_df$B
 hist_Fees_17_18_df <- hist_Fees_17_18_df[c(6,1)]
 colnames(hist_Fees_17_18_df) = c("Bins", "Frequency")
 
-#Combine 16_17 with 17_18
-
-Hist_Combine_Periods = merge(hist_Fees_16_17_df, hist_Fees_17_18_df, "Bins")
-colnames(Hist_Combine_Periods) = c("Bins", "Frequency - Period 16_17", "Frequency - Period 17_18")
-Hist_Combine_Periods$`Frequency - Period 16_17 - Normalized` = (Hist_Combine_Periods$`Frequency - Period 16_17`/sum(Hist_Combine_Periods$`Frequency - Period 16_17`))*100
-Hist_Combine_Periods$`Frequency - Period 17_18 - Normalized` = (Hist_Combine_Periods$`Frequency - Period 17_18`/sum(Hist_Combine_Periods$`Frequency - Period 17_18`))*100
-
-Hist_Combine_Periods$Evolution = ((Hist_Combine_Periods$`Frequency - Period 17_18 - Normalized`/Hist_Combine_Periods$`Frequency - Period 16_17 - Normalized`)-1)*100
-Hist_Combine_Periods <- Hist_Combine_Periods[!is.na(Hist_Combine_Periods$Evolution),]
-Hist_Combine_Periods <- Hist_Combine_Periods[!is.infinite(Hist_Combine_Periods$Evolution),]
 
 
